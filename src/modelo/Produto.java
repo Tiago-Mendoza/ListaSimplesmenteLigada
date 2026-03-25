@@ -1,19 +1,20 @@
 package modelo;
 
 public class Produto {
+
     private String nome;
-    private double preco;
+    private float preco;
     private int id;
+    private static int cont = 1;
 
-    private static int cont=1; //variavel classe // Variável de classe (estática) - compartilhada por todos os Produtos
-
-
-    // Construtor padrão (sem argumentos)
+    // Construtor padrão que gerencia o ID
     public Produto() {
-        this.id = cont++; // Agora o nome da variável bate com a declaração acima
+        this.id = cont++;
     }
 
-    public Produto(String nome, double preco) {
+    // Construtor completo: chama o de cima para garantir o ID e preenche o resto
+    public Produto(String nome, float preco) {
+        this(); // Chama o construtor Produto() para incrementar o ID
         this.nome = nome;
         this.preco = preco;
     }
@@ -26,24 +27,21 @@ public class Produto {
         this.nome = nome;
     }
 
-    public double getPreco() {
+    // Corrigido de Double para float
+    public float getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
     @Override
     public String toString() {
-        return "Produto{" +
-                "nome='" + nome + '\'' +
-                ", preco=" + preco +
-                ", id=" + id +
-                '}';
+        return "Produto{ID: " + id + ", Nome: " + nome + ", Preço: " + preco + "}";
     }
 }

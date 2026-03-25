@@ -1,13 +1,14 @@
 package lista;
 
 import modelo.Produto;
+
 public class No {
     private Produto produto;
     private No prox;
 
-    public No(No prox, Produto produto) {
-        this.prox = prox;
+    public No(Produto produto, No prox) {
         this.produto = produto;
+        this.prox = prox;
     }
 
     public Produto getProduto() {
