@@ -47,6 +47,11 @@ public class UsaLista {
             System.out.println("\n Não Achou o ID Pesquisado");
         }
         System.out.println("\n Remoção Concluida");
-    }
 
+        System.out.println("\n ----- Atualizando preço da Lista ------");
+        lista.atualizarLista(10);
+        lista.exibir();
+    }
 }
+
+
