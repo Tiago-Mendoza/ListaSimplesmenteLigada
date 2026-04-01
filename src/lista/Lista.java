@@ -3,44 +3,34 @@ package lista;
 import modelo.Produto;
 
 public class Lista {
-
-    private No inicio, auxiliar, atual;
+    private No inicio, aux, atual;
 
     /**
      * Insere nó no final da lista simplesmente ligada
      * @param produto Produto
      */
-    public void inserir(Produto produto){
+    public void inserir(Produto produto) {
         // Quando a lista estiver vazia
         if(inicio == null){
-            inicio = new No(produto, null);
-            auxiliar = inicio;
-        }
-        else {
-            // Quando a lista não estiver vazia
+            inicio=new No(produto, null);
+            aux=inicio;
+        } else { // Quando a lista não estiver vazia
             atual = new No(produto, null);
-            auxiliar.setProx(atual);
-            auxiliar = atual;
+            aux.setProx(atual);
+            aux = atual;
         }
     }
-
-    /**
-     * Exibe todos os produtos da lista
-     */
-    public void exibir(){
+    public void exibir() {
         No e = inicio;
-        while(e != null){
+        while (e != null) {
             System.out.println(e.getProduto());
             e = e.getProx();
         }
     }
 
-
-    // NOVAS MODIFICAÇÕES ABAIXO
-
-
     public Produto pesquisar(int id) {
         No e = inicio;
+
         while (e != null) {
             if (e.getProduto().getId() == id) {
                 return e.getProduto();
@@ -49,14 +39,45 @@ public class Lista {
         }
         return null;
     }
-
-    // NOVAS MODIFICAÇÕES ABAIXO
-
     public boolean atualizar(int id, float preco) {
-        Produto p = pesquisar(id);
+        No e = inicio;
 
-        if (p != null) {
-            p.setPreco(preco);
+        while (e != null) {
+            if (e.getProduto().getId() == id) {
+                e.getProduto().setPreco(preco);
+                return true;
+            }
+            e = e.getProx();
+        }
+        return false;
+    }
+
+    public boolean remover(int id){
+        // Pesquisar
+        No remov = inicio, anterior = inicio;
+        while(remov != null){
+
+            if(id == remov.getProduto().getId()){
+                break;
+            }
+            anterior = remov;
+            remov = remov.getProx();
+        }
+
+        if(remov != null){
+            // Remover o nó da lista
+            if(remov == inicio){ // 1° Caso - Remoção do primeiro nó
+                inicio = remov.getProx();
+                remov.setProx(null);
+            } else if(remov==atual){ // 2° Caso - Remoção do ultimo nó
+                atual = anterior;
+                aux = anterior;
+                anterior.setProx(null);
+            } else { // 3° Caso - Remoção de um nó qualquer
+                anterior.setProx(remov.getProx());
+                remov.setProx(null);
+            }
+
             return true;
         }
         return false;

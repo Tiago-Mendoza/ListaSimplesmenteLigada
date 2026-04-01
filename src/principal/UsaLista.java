@@ -7,35 +7,46 @@ public class UsaLista {
 
     public static void main(String[] args) {
         Lista lista = new Lista();
-        lista.inserir(new Produto("Café", 25.34f));
+
+        lista.inserir(new Produto("Café", 40.34f));
         lista.inserir(new Produto("Azeite", 38.67f));
         lista.inserir(new Produto("Arroz", 25.78f));
-        lista.inserir(new Produto("Celular", 1234.56f));
 
-        System.out.println("--- Lista Original ---");
+
+        System.out.println("Lista:");
         lista.exibir();
 
 
-        // TESTE DAS NOVAS MODIFICAÇÕES
+        System.out.println("\nPesquisa:");
+        Produto p = lista.pesquisar(1);
 
-
-        System.out.println("\n--- Testando Pesquisa (ID: 2) ---");
-        Produto busco = lista.pesquisar(2);
-        if (busco != null) {
-            System.out.println("Encontrado: " + busco.getNome());
+        if (p != null) {
+            System.out.println(p);
         } else {
-            System.out.println("Produto não encontrado.");
+            System.out.println("Produto não encontrado");
         }
 
-        System.out.println("\n--- Testando Atualização de Preço (ID: 2 para 45.99) ---");
-        boolean atualizou = lista.atualizar(2, 45.99f);
-        if (atualizou) {
-            System.out.println("Preço atualizado com sucesso!");
+        System.out.println("\nAtualização:");
+        boolean atualizado = lista.atualizar(1, 50.0f);
+
+        if (atualizado) {
+            System.out.println("Atualizado com sucesso");
         } else {
-            System.out.println("Falha ao atualizar: ID inexistente.");
+            System.out.println("Produto não encontrado");
         }
 
-        System.out.println("\n--- Lista Após Atualização ---");
+        System.out.println("\nLista atualizada:");
         lista.exibir();
+
+
+        System.out.println("\n Remover nó da lista");
+
+        if(lista.remover(5)){
+            lista.exibir();
+        } else{
+            System.out.println("\n Não Achou o ID Pesquisado");
+        }
+        System.out.println("\n Remoção Concluida");
     }
+
 }
