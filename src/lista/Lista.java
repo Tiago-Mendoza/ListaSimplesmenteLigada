@@ -82,4 +82,24 @@ public class Lista {
         }
         return false;
     }
+//Atividade 4--
+    public void limparLista(){
+        inicio = null;
+        aux = null;
+        atual = null;
+    }
+
+    public void atualizarLista(float p) {
+        No e = inicio;
+
+        while (e != null) {
+            Produto prod = e.getProduto();
+
+            float novoPreco = prod.getPreco() + (prod.getPreco() * p / 100);
+            prod.setPreco(novoPreco);
+
+            e = e.getProx();
+        }
+    }
+
 }
